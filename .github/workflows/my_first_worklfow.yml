@@ -1,9 +1,9 @@
-name: Python CI
+name: Python Lint CI
 
 on: [push]
 
 jobs:
-  test123:
+  lint-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,9 +16,10 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install pytest
+        run: pip install pytest flake8
+
+      - name: Lint code
+        run: flake8 .
 
       - name: Run tests
         run: pytest
-
-
